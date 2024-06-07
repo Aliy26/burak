@@ -1,17 +1,17 @@
-// H-TASK:
+import validator from "validator";
 
-// shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, faqat positive qiymatlarni olib string holatda return qilsin
-// MASALAN: getPositive([1, -4, 2]) return qiladi "12"
+// H2-TASK:
 
-// @MITASK
+// Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+// MASALAN: getDigits("m14i1t") return qiladi "141"
 
-let vacant: number[] = [];
+let empty: string[] = [];
 
-function getPositive(arr: number[]): string {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] >= 0) vacant.push(arr[i]);
+function getDigits(str: string): string {
+  for (let value of str) {
+    if (validator.isInt(value)) empty.push(value);
   }
-  return vacant.join("");
+  return empty.join("");
 }
 
-console.log(getPositive([1, -4, 2]));
+console.log(getDigits("m13i1t"));
