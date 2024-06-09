@@ -41,7 +41,7 @@ restaurantController.processLogin = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.signupProcess = (req: Request, res: Response) => {
+restaurantController.processSignup = (req: Request, res: Response) => {
   try {
     console.log("loginProcess");
     res.send("Successully signed in!");
