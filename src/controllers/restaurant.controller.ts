@@ -57,6 +57,7 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
     res.send(result);
   } catch (err) {
     console.log("Couldn't sign up", err);
+    res.send(err);
   }
 };
 
