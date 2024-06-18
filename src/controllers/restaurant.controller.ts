@@ -10,28 +10,28 @@ const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res: Response) => {
   try {
     console.log("Home Page");
-    res.send("Welcome sir Admin!");
+    res.render("home");
   } catch (err) {
     console.log("Can't get to homepage", err);
-  }
-};
-
-restaurantController.login = (req: Request, res: Response) => {
-  try {
-    console.log("Login Page");
-    res.send("Sir Admin please log in");
-    // send | json | redirect | end | render
-  } catch (err) {
-    console.log("Couldn't log in", err);
   }
 };
 
 restaurantController.signup = (req: Request, res: Response) => {
   try {
     console.log("Signup Page");
-    res.send("Sing up as Admin");
+    res.render("signup");
   } catch (err) {
     console.log("Couldn't sign up", err);
+  }
+};
+
+restaurantController.login = (req: Request, res: Response) => {
+  try {
+    console.log("Login Page");
+    res.render("login");
+    // send | json | redirect | end | render
+  } catch (err) {
+    console.log("Couldn't log in", err);
   }
 };
 
