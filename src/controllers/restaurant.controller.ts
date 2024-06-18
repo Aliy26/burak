@@ -4,6 +4,7 @@ import MemberService from "../model/Member.service";
 import { MemberInput, LoginInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
+const memberService = new MemberService();
 const restaurantController: T = {};
 
 restaurantController.goHome = (req: Request, res: Response) => {
@@ -34,35 +35,33 @@ restaurantController.signup = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.processLogin = async (req: Request, res: Response) => {
-  try {
-    console.log(req.headers);
-    console.log("processLogin");
-    const input: LoginInput = req.body;
-    console.log(input);
-    const memberService = new MemberService();
-    const result = await memberService.processLogin(input);
-    res.send(result);
-  } catch (err) {
-    console.log("Couldn't log in", err);
-    res.send(err);
-  }
-};
-
 restaurantController.processSignup = async (req: Request, res: Response) => {
   try {
     console.log("processSignup");
-    console.log("body", req.body);
 
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.RESTAURANT;
-
-    const memberService = new MemberService();
     const result = await memberService.processSignup(newMember);
+    // TO DO: Sessions Authentication
 
     res.send(result);
   } catch (err) {
     console.log("Couldn't sign up", err);
+    res.send(err);
+  }
+};
+
+restaurantController.processLogin = async (req: Request, res: Response) => {
+  try {
+    console.log("processLogin");
+
+    const input: LoginInput = req.body;
+    const result = await memberService.processLogin(input);
+    // TO DO: Sessions Authentication
+
+    res.send(result);
+  } catch (err) {
+    console.log("Couldn't log in", err);
     res.send(err);
   }
 };
