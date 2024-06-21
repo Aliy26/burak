@@ -4,6 +4,7 @@ import MemberService from "../model/Member.service";
 import { AdminRequest, MemberInput, LoginInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import { Message } from "../libs/Errors";
+import Errors from "../libs/Errors";
 
 const memberService = new MemberService();
 const restaurantController: T = {};
@@ -14,25 +15,28 @@ restaurantController.goHome = (req: Request, res: Response) => {
     res.render("home");
   } catch (err) {
     console.log("Can't get to homepage", err);
+    res.redirect("/admin");
   }
 };
 
-restaurantController.signup = (req: Request, res: Response) => {
+restaurantController.getSignup = (req: Request, res: Response) => {
   try {
     console.log("Signup Page");
     res.render("signup");
   } catch (err) {
     console.log("Couldn't sign up", err);
+    res.redirect("/admin");
   }
 };
 
-restaurantController.login = (req: Request, res: Response) => {
+restaurantController.getLogin = (req: Request, res: Response) => {
   try {
     console.log("Login Page");
     res.render("login");
     // send | json | redirect | end | render
   } catch (err) {
     console.log("Couldn't log in", err);
+    res.redirect("/admin");
   }
 };
 
@@ -55,7 +59,11 @@ restaurantController.processSignup = async (
     });
   } catch (err) {
     console.log("Couldn't sign up", err);
-    res.send(err);
+    const message =
+      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert("${message}") window.location.replace("admin/signup") </script>`
+    );
   }
 };
 
@@ -76,7 +84,24 @@ restaurantController.processLogin = async (
     });
   } catch (err) {
     console.log("Couldn't log in", err);
-    res.send(err);
+    const message =
+      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert("${message}") window.location.replace("admin/login") </script>`
+    );
+  }
+};
+
+restaurantController.logout = async (req: AdminRequest, res: Response) => {
+  try {
+    console.log("logout");
+
+    req.session.destroy(() => {
+      res.redirect("/admin");
+    });
+  } catch (err) {
+    console.log("Couldn't log in", err);
+    res.redirect("/admin");
   }
 };
 
