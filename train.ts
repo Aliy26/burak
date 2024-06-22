@@ -1,18 +1,11 @@
-// K-TASK:
+// L-TASK:
 
-// Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
-// MASALAN: countVowels("string") return 1;
+// Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+// MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
 // @MITASK
 
-const vowels: string[] = ["a", "e", "i", "o", "u", "y"];
+const reverseSentence = (str: string): string =>
+  str.split("").reverse().join("").split(" ").reverse().join(" ");
 
-function countVoweles(str: string) {
-  let count: number = 0;
-  for (let vowel of str) {
-    if (vowels.includes(vowel)) count++;
-  }
-  return count;
-}
-
-console.log(countVoweles("string"));
+console.log(reverseSentence("we like coding!"));

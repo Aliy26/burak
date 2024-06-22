@@ -111,6 +111,7 @@ restaurantController.checkAuthSession = async (
 ) => {
   try {
     console.log("checkAuthSession");
+    console.log(req.session);
     if (req.session?.member)
       res.send(
         `<script> alert("Hi ${req.session.member.memberNick}!") </script>`
