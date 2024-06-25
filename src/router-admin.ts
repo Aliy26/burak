@@ -5,10 +5,9 @@ import productController from "./controllers/product.controller";
 import makeUploader from "./libs/utils/uploder";
 
 /** Restaurant */
+
 routerAdmin.get("/", restaurantController.goHome);
-routerAdmin
-  .get("/login", restaurantController.getLogin)
-  .post("/login", restaurantController.processLogin);
+
 routerAdmin
   .get("/signup", restaurantController.getSignup)
   .post(
@@ -16,6 +15,11 @@ routerAdmin
     makeUploader("members").single("memberImage"),
     restaurantController.processSignup
   );
+
+routerAdmin
+  .get("/login", restaurantController.getLogin)
+  .post("/login", restaurantController.processLogin);
+
 routerAdmin.get("/logout", restaurantController.logout);
 routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 
@@ -29,7 +33,7 @@ routerAdmin.get(
 routerAdmin.post(
   "/product/create",
   restaurantController.verifyRestaurant,
-  makeUploader("products").array("productImages"),
+  makeUploader("products").array("productImages, 4"),
   productController.createNewProduct
 );
 routerAdmin.post(
