@@ -122,11 +122,14 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
 
 restaurantController.updateChosenUser = async (req: Request, res: Response) => {
   try {
-    console.log("getUsers");
-    const result = await memberService.getUsers();
-    res.render("users", { users: result });
+    console.log("updateChosenUsers");
+    const result = await memberService.updateChosenUser(req.body);
+
+    res.status(HttpCode.OK).json({ data: result });
   } catch (err) {
     console.log("Error, updateChosenUser", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
 
@@ -136,7 +139,7 @@ restaurantController.checkAuthSession = async (
 ) => {
   try {
     console.log("checkAuthSession");
-    console.log(req.session);
+
     if (req.session?.member)
       res.send(
         `<script> alert("Hi ${req.session.member.memberNick}!") </script>`
