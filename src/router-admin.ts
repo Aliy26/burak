@@ -55,10 +55,4 @@ routerAdmin.post(
   restaurantController.updateChosenUser
 );
 
-// routerAdmin.post(
-//   "/user/edit",
-//   restaurantController.verifyRestaurant,
-//   restaurantController.updateChosenUser
-// );
-
 export default routerAdmin;
