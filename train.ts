@@ -1,16 +1,8 @@
-// O-TASK:
+// P-TASK:
 
-// Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
-// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+// Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
-function calclulateSumofNumbers(arr: any[]): number {
-  let count: number = 0;
+const objectToArray = (obj: {}): any[] => Object.entries(obj);
 
-  arr.map((value) => {
-    typeof value === "number" ? (count += value) : null;
-  });
-
-  return count;
-}
-
-console.log(calclulateSumofNumbers([10, "10", { son: 10 }, true, 35]));
+console.log(objectToArray({ a: 10, b: 20 }));

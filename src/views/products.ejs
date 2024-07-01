@@ -43,30 +43,29 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <!--  LOOP PRODUCTS: START  -->
+            <% products.map((product, index) => { %>
             <tbody style="background: white">
-              <% products.map((product, index) => { %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td><%= product.productName %></td>
-                <td><%= product.productCollection %></td>
-                <td><%= product.productSize %></td>
-                <td><%= product.productPrice %></td>
-                <td><%= product.productLeftCount %></td>
-                <td>
-                  <select class="spec-select new-product-status">
-                    <option value="PAUSE" selected>
-                      <%= product.productStatus %>
-                    </option>
-                    <option value="PROCESS">PROCESS</option>
-                    <option value="DELETE">DELETE</option>
-                  </select>
-                </td>
-              </tr>
-              <% }) %>
+              <td><%= index + 1 %></td>
+              <td><%= product.productName %></td>
+              <td>
+                <%= product.productCollection === "DRINK" ?
+                product.productVolume : product.productSize %>
+              </td>
+              <td><%= product.productSize %></td>
+              <td><%= product.productPrice %></td>
+              <td><%= product.productLeftCount %></td>
+              <td>
+                <select
+                  class="spec-select new-product-status"
+                  id="<%= product._id %>"
+                >
+                  <option value="PAUSE" <%= product.productStatus === "PAUSE" ? "selected": "" %> >PAUSE</option>
+                  <option value="PROCESS" <%= product.productStatus === "PROGRESS" ? "selected": "" %> >PROCESS</option>
+                  <option value="DELETE" <%= product.productStatus === "DELETE" ? "selected": "" %> >DELETE</option>
+                </select>
+              </td>
             </tbody>
-
-            <!--  LOOP PRODUCTS: END  -->
+            <% }) %>
           </table>
           <div
             class="long-input"

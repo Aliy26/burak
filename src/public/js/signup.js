@@ -1,6 +1,6 @@
 console.log("Signup frontend javascript file");
 
-$(function () {
+$(() => {
   const fileTarget = $(".file-box .upload-hidden");
   let filename;
 
@@ -13,7 +13,6 @@ $(function () {
         alert("Please insert only jpeg, jpg and png!");
       } else {
         if (uploadFile) {
-          console.log(URL.createObjectURL(uploadFile));
           $(".upload-img-frame")
             .attr("src", URL.createObjectURL(uploadFile))
             .addClass("success");
