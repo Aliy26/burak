@@ -5,7 +5,7 @@
 
 function sumOdds(num: number): number {
   const vacant: number[] = [];
-  for (let i = 1; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     if (i % 2 === 1) vacant.push(i);
   }
   return vacant.length;
