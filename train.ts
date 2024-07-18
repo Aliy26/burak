@@ -6,6 +6,7 @@
 function countChars(str: string): {} {
   let obj: any = {};
   let vacant: string[] = [];
+
   for (let i = 0; i < str.length; i++) {
     if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
       obj[str[i]] = 1;
@@ -17,5 +18,5 @@ function countChars(str: string): {} {
   return obj;
 }
 
-console.log(countChars("helllo"));
+console.log(countChars("hellloo"));
 console.log(countChars("mit"));

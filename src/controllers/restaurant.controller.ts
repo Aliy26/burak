@@ -7,6 +7,7 @@ import { HttpCode, Message } from "../libs/Errors";
 import Errors from "../libs/Errors";
 
 const memberService = new MemberService();
+
 const restaurantController: T = {};
 
 restaurantController.goHome = (req: Request, res: Response) => {
