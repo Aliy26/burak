@@ -99,6 +99,7 @@ memberController.getMemberDetail = async (
 memberController.updateMember = async (req: ExtednedRequest, res: Response) => {
   try {
     console.log("updateMember");
+
     const input: MemberUpdateInput = req.body;
     if (req.file) input.memberImage = req.file.path.replace(/\\/, "/");
 
@@ -132,6 +133,7 @@ memberController.verifyAuth = async (
   try {
     const token = req.cookies["accessToken"];
     if (token) req.member = await authService.checkAuth(token);
+    console.log(req.member);
     if (!req.member)
       throw new Errors(HttpCode.UNAUTHORIZED, Message.NOT_AUTHENTICATED);
 

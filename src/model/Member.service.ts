@@ -46,7 +46,6 @@ class MemberService {
   }
 
   public async login(input: LoginInput): Promise<Member> {
-    // TO DO: Consider member status later
     const member = await this.memberModel
       .findOne(
         {
@@ -77,7 +76,7 @@ class MemberService {
     const result = await this.memberModel
       .findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
       .exec();
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.CREATE_FAILED);
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result;
   }
