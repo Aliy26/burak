@@ -5,7 +5,7 @@ import {
   MemberInput,
   LoginInput,
   Member,
-  ExtednedRequest,
+  ExtendedRequest,
   MemberUpdateInput,
 } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
@@ -69,7 +69,7 @@ memberController.login = async (req: Request, res: Response) => {
   }
 };
 
-memberController.logout = (req: ExtednedRequest, res: Response) => {
+memberController.logout = (req: ExtendedRequest, res: Response) => {
   console.log("logout");
   res.cookie("accessToken", null, { maxAge: 0, httpOnly: true });
   res.status(HttpCode.OK).json({ logout: true });
@@ -82,7 +82,7 @@ memberController.logout = (req: ExtednedRequest, res: Response) => {
 };
 
 memberController.getMemberDetail = async (
-  req: ExtednedRequest,
+  req: ExtendedRequest,
   res: Response
 ) => {
   try {
@@ -96,7 +96,7 @@ memberController.getMemberDetail = async (
   }
 };
 
-memberController.updateMember = async (req: ExtednedRequest, res: Response) => {
+memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("updateMember");
 
@@ -126,7 +126,7 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
 };
 
 memberController.verifyAuth = async (
-  req: ExtednedRequest,
+  req: ExtendedRequest,
   res: Response,
   next: NextFunction
 ) => {
@@ -146,7 +146,7 @@ memberController.verifyAuth = async (
 };
 
 memberController.retrieveAuth = async (
-  req: ExtednedRequest,
+  req: ExtendedRequest,
   res: Response,
   next: NextFunction
 ) => {

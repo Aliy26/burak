@@ -46,7 +46,7 @@ export interface MemberUpdateInput {
   memberImage?: string;
 }
 
-export interface ExtednedRequest extends Request {
+export interface ExtendedRequest extends Request {
   member: Member;
   file: Express.Multer.File;
   files: Express.Multer.File[];
