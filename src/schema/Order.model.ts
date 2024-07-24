@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { OrderStatus } from "../libs/enums/order.enum";
 
-const productSchema = new Schema(
+const orderSchema = new Schema(
   {
     orderTotal: {
       type: Number,
@@ -25,4 +25,4 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Order", productSchema);
+export default mongoose.model("Order", orderSchema);

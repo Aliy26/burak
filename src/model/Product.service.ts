@@ -43,7 +43,7 @@ class ProductService {
       .aggregate([
         { $match: match },
         { $sort: sort },
-        { $skip: (inquiry.page * 1 - 1) * inquiry.limit }, // 0 => no skip
+        { $skip: (inquiry.page * 1 - 1) * inquiry.limit }, // 3 => no skip
         { $limit: inquiry.limit * 1 }, // 3 => 1, 2, 3
       ])
       .exec();
