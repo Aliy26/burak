@@ -1,4 +1,4 @@
-import { Order, OrderItemInput } from "../libs/types/order";
+import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
 import { Member } from "../libs/types/member";
 import OrderModel from "../schema/Order.model";
 import OrderItem from "../schema/OrderItem";
@@ -56,6 +56,41 @@ class OrderService {
 
     const orderItemsState = await Promise.all(promisedList);
     console.log("orderItemState:", orderItemsState);
+  }
+
+  public async getMyOrders(
+    member: Member,
+    inquiry: OrderInquiry
+  ): Promise<Order[]> {
+    const memberId = shapeIntoMongooseObjectID(member._id);
+    const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
+
+    const result = await this.orderModel.aggregate([
+      { $match: matches },
+      { $sort: { updatedAt: -1 } },
+      { $skip: (inquiry.page - 1) * inquiry.page },
+      { $limit: inquiry.limit },
+      {
+        $lookup: {
+          from: "orderItems",
+          localField: "_id",
+          foreignField: "orderId",
+          as: "orderItems",
+        },
+      },
+      {
+        $lookup: {
+          from: "products",
+          localField: "orderItems.productId",
+          foreignField: "_id",
+          as: "productData",
+        },
+      },
+    ]);
+
+    if (!result) throw new Errors(HttpCode.BAD_REQUEST, Message.NO_DATA_FOUND);
+
+    return result;
   }
 }
 
