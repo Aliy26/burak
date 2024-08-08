@@ -1,15 +1,9 @@
-// ZF-TASK:
+// ZG-TASK:
 
-// Shunday function yozing, uni string parametri bolsin. String ichidagi har bir sozni bosh harflarini katta harf qilib qaytarsin lekin 1 yoki 2 harfdan iborat sozlarni esa oz holicha qoldirsin.
-// MASALAN: capitalizeWords('name should be a string') return 'Name Should be a String
+// Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin.
+// MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string'
 
-function capitalizeWords(str: string): string {
-  return str
-    .split(" ")
-    .map((word) =>
-      word.length > 2 ? word[0].toUpperCase() + word.slice(1) : word
-    )
-    .join(" ");
-}
+const capitalizeWords = (str: string): string =>
+  (str = str.split(" ").join("_"));
 
 console.log(capitalizeWords("name should be a string"));
